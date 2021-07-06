@@ -25,7 +25,7 @@ SECRET_KEY = '!ayash-g9pf+1++qy^7cr3&^+317cqit*(s4s##d53((wr$8#%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['annualreportgeneratorsystem.com', 'annualreportgeneratorsystem.herokuapp.com']
+ALLOWED_HOSTS = ['annualreportgenerationsystem.com', 'annualreportgenerationsystem.herokuapp.com']
 # ALLOWED_HOSTS = []
 
 # Application definition
