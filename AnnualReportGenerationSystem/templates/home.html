@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}WCE Home{% endblock %}
+
+{% block content %}
+    <style>
+        @media screen and (min-width: 400px) {
+            .clg-heading {
+                margin-bottom: 0;
+            }
+        }
+        @media screen and (min-width: 1024px) {
+            .clg-heading {
+                margin-bottom: 3%;
+            }
+        }
+    </style>
+    <div>
+        <img style="float: left; margin-right: 5px" src="{% static '/image/Walchand_11.jpg' %}" alt="logo" />
+        <h1 class="clg-heading">Walchand College of Engineering, Sangli</h1><br>
+    </div>
+    <div style="position: absolute">
+        <h1>Annual Report Generating System</h1>
+    </div>
+
+    <br>
+{% endblock %}

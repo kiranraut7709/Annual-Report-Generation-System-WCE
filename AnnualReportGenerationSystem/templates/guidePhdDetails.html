@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Student's PHD Detail
+{% endblock %}
+
+{% block content %}
+    <style>
+        @media screen and (min-width: 1024px) {
+            .card {
+                width: 60%;
+                margin: auto;
+            }
+        }
+    </style>
+    <h1>Student's PHD Detail</h1>
+    <br>
+    <a class="btn btn-info" href="addGuidePHD" role="button">Add Student's PHD Detail</a>
+    {% if showAll %}
+        <a class="btn btn-info" href="showAllGuidePhdData" role="button">Show All PHD Data</a>
+    {% else %}
+        <a class="btn btn-info" href="guidePhdDetails" role="button">Hide PHD Data</a>
+    {% endif %}
+    <br><br><br>
+    {% for i in guideAllPhd %}
+        <div class="card text-center">
+            <div class="card-header">
+                Title:  {{ i.title_thesis }}
+            </div>
+            <div class="card-body">
+                <p class="card-title">Student Name: {{ i.student_name }}</p>
+                <p class="card-title">Guide Name: {{ i.guide_name }}</p>
+                <p class="card-title">Registration Date: {{ i.registration_date }}</p>
+                {% if i.comment_on_thesis == "" %}
+
+                {% else %}
+                    <p class="card-title">Remark: {{ i.comment_on_thesis }}</p>
+                {% endif %}
+                <p class="card-title">Type of PHD: {{ i.type_of_phd }}</p>
+                {% if i.status == True %}
+                    <p class="card-title">Completion Date: {{ i.completion_date }}</p>
+                {% else %}
+                    <p class="card-title">Status: Pursuing</p>
+                {% endif %}
+
+                {% if i.academic_year %}
+                    <p class="card-title">Academic Year: {{ i.academic_year }}-{{ i.academic_year|add:"1" }}</p>
+                {% endif %}
+
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#popUpModal{{ i.phd_id }}">
+                    <img src="{% static 'image/trash-bin.png' %}" alt="trash-bin">
+                </button>
+                {% if i.status == False %}
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popUpModal1{{ i.phd_id }}">
+                        Update Status
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="popUpModal{{ i.phd_id }}" tabindex="-1" role="dialog" aria-labelledby="popUpModalTitle" aria-hidden="true">
+            <div class=" modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="popUpModalTitle">Delete Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Are you sure, you want to delete.</h6>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="guidePhdDetails"><button type="button" class="btn btn-secondary" >No, thanks</button></a>
+                        <a href="guidePhdDetailsDelete/{{i.phd_id}}"><button type="button" class="btn btn-danger" >Delete</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="popUpModal1{{ i.phd_id }}" tabindex="-1" role="dialog" aria-labelledby="popUpModalTitle" aria-hidden="true">
+            <div class=" modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="popUpModalTitle">Select Academic Year for adding that year's PHD Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal"  role="form" action="updateGuidePhdData/{{ i.phd_id }}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div>
+                                    <label class="control-label" for="ddlYears">
+                                        Academic Year:
+                                    </label>
+                                    <select name="academic_year" id="{{ i.phd_id }}"></select>
+                                    -
+                                    <select name="toYear" id="ddlYears{{ i.phd_id }}"></select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="guidePhdDetails"><button type="button" class="btn btn-secondary" >Cancel</button></a>
+                                <button type="submit" class="btn btn-success" >Submit</button>
+                            </div>
+                        </form>
+                        <script>
+                            //Reference the DropDownList.
+                            var ddlYears = document.getElementById("{{ i.phd_id }}");
+
+                            //Determine the Current Year.
+                            var currentYear = (new Date()).getFullYear();
+                            //Loop and add the Year values to DropDownList.
+                            for (var i = 1950; i <= currentYear; i++) {
+                                var option = document.createElement("OPTION");
+                                option.innerHTML = i;
+                                option.value = i;
+                                ddlYears.appendChild(option);
+                            }
+                        </script>
+                        <script>
+                            var ddlYears2 = document.getElementById("ddlYears{{ i.phd_id }}");
+                            //Determine the Current Year.
+                            var currentYear = (new Date()).getFullYear();
+                            //Loop and add the Year values to DropDownList.
+                            for (var i = 1950; i <= currentYear; i++) {
+                                var option = document.createElement("OPTION");
+                                option.innerHTML = i+1;
+                                option.value = i+1;
+                                ddlYears2.appendChild(option);
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+    {% endfor %}
+
+    {% for message in messages %}
+        <script>alert("{{ message }}")</script>
+    {% endfor %}
+
+{% endblock %}

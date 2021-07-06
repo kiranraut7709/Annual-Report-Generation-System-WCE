@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Our Team
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <h1 class="text-center">Our Team</h1>
+
+    <div class="row text-center" style="margin-left: auto">
+        <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'image/kiran-raut.JPG' %}" alt="Kiran">
+                <div class="card-body">
+                    <h5 class="card-title">Kiran Raut</h5>
+                    <a href="https://www.linkedin.com/in/kiranpatil7709/"><img src="{% static 'image/linkedin.png' %}"></a>
+                    <a href="https://twitter.com/KiranRaut7709?s=09"><img src="{% static 'image/twitter.png' %}"></a>
+                    <a href="https://www.facebook.com/kiran.raut.75054689"><img src="{% static 'image/facebook.png' %}"></a>
+                    <a href="https://www.instagram.com/kiran_raut_7709/"><img src="{% static 'image/instagram.png' %}"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'image/siddharth-tandale.jpg' %}" alt="Siddharth">
+                <div class="card-body">
+                    <h5 class="card-title">Siddharth Tandale</h5>
+                    <a href="https://www.linkedin.com/in/siddharth-tandale-60522916a/"><img src="{% static 'image/linkedin.png' %}"></a>
+                    <a href="https://twitter.com/Siddhar28279816"><img src="{% static 'image/twitter.png' %}"></a>
+                    <a href="https://www.facebook.com/siddharth.tandle.9"><img src="{% static 'image/facebook.png' %}"></a>
+                    <a href="https://www.instagram.com/s_i_d__tandale/"><img src="{% static 'image/instagram.png' %}"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'image/yash-hoke.jpeg' %}" alt="Yash">
+                <div class="card-body">
+                    <h5 class="card-title">Yash Hoke</h5>
+                    <a href="https://www.linkedin.com/in/yash-hoke-ab31401b1/"><img src="{% static 'image/linkedin.png' %}"></a>
+                    <a href="#"><img src="{% static 'image/twitter.png' %}"></a>
+                    <a href="https://www.facebook.com/yash.hoke"><img src="{% static 'image/facebook.png' %}"></a>
+                    <a href="https://www.instagram.com/yashhoke/"><img src="{% static 'image/instagram.png' %}"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

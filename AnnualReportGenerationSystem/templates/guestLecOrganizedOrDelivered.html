@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Guest Lecture Organized or Delivered Details
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <style>
+        @media screen and (min-width: 1024px) {
+            .card {
+                width: 60%;
+                margin: auto;
+            }
+        }
+    </style>
+    <h1>Guest Lecture Organized or Delivered Details</h1>
+    <br>
+    <a class="btn btn-info" href="addguestLecOrganizedOrDelivered" role="button">Add Lecture Organized or Delivered</a>
+    <br><br><br>
+
+    {% if allguestLecDetails %}
+        <table class="table table-striped text-center">
+            <thead>
+            <tr>
+                <th scope="col">Guest Lecture Type</th>
+                <th scope="col">Teacher Name</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Place</th>
+                <th scope="col">Starting Date</th>
+                <th scope="col">Ending Date</th>
+            </thead>
+            <tbody>
+            {% for i in allguestLecDetails %}
+                <tr>
+                    <td scope="row">{{ i.type }}</td>
+                    <td>{{ i.teacher_name }}</td>
+                    <td>{{ i.subject }}</td>
+                    <td>{{ i.place }}</td>
+                    <td>{{ i.starting_date }}</td>
+                    <td>{{ i.ending_date }}</td>
+                    <td>
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#popUpModal{{ i.id }}">
+                            <img src="{% static 'image/trash-bin.png' %}" alt="trash-bin">
+                        </button>
+                    </td>
+                </tr>
+
+                <!-- Modal -->
+                <div class="modal fade" id="popUpModal{{ i.id }}" tabindex="-1" role="dialog" aria-labelledby="popUpModalTitle" aria-hidden="true">
+                    <div class=" modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="popUpModalTitle">Delete Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h6>Are you sure, you want to delete.</h6>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="guestLecOrganizedOrDelivered"><button type="button" class="btn btn-secondary" >No, thanks</button></a>
+                                <a href="guestLecOrganizedOrDeliveredDelete/{{i.id}}"><button type="button" class="btn btn-danger" >Delete</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <br>
+
+{% endblock %}
+

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Research Papers
+{% endblock %}
+
+{% block content %}
+    <!-- <style>
+        @media screen and (min-width: 1024px) {
+            .card {
+                width: 60%;
+                margin: auto;
+            }
+        }
+    </style> -->
+    <h1>Research Papers</h1>
+    <br>
+    <!--Add a Paper-->
+    <br>
+    <a class="btn btn-info" href="addResearchPapers" role="button">Add Research Paper</a>
+    <br><br><br>
+
+    {% if allResearchPaper %}
+        <table class="table table-striped text-center">
+            <thead>
+            <tr>
+                <th scope="col">DOI</th>
+                <th scope="col">Type of Publication</th>
+                <th scope="col">Details of Paper</th>
+                <th scope="col">Author Name</th>
+                <th scope="col">Publication Date</th>
+                <th scope="col">Department</th>
+                <th scope="col">Area of Research</th>
+                <th scope="col">Journal or Publication Details</th>
+            </thead>
+            <tbody>
+            {% for j in allResearchPaper %}
+                {% for i in j %}
+                    <tr>
+                        <td scope="row">{{ i.doi }}</td>
+                        <td>{{ i.type_of_publication }}</td>
+                        <td>{{ i.details_of_paper }}</td>
+                        <td>{{ i.author_name }}</td>
+                        <td>{{ i.publication_date }}</td>
+                        <td>{{ i.department }}</td>
+                        <td>{{ i.area_of_research }}</td>
+                        <td>{{ i.publication_details }}</td>
+                        <td>
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#popUpModal{{ i.doi }}">
+                                <img src="{% static 'image/trash-bin.png' %}" alt="trash-bin">
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="popUpModal{{ i.doi }}" tabindex="-1" role="dialog" aria-labelledby="popUpModalTitle" aria-hidden="true">
+                        <div class=" modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="popUpModalTitle">Delete Confirmation</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h6>Are you sure, you want to delete.</h6>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="researchPapers"><button type="button" class="btn btn-secondary" >No, thanks</button></a>
+                                    <a href="researchPaperDelete/{{i.doi}}"><button type="button" class="btn btn-danger" >Delete</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <br>
+
+{% endblock %}

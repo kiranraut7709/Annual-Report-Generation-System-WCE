@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Google Scholar Citation Detail
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <style>
+        @media screen and (min-width: 1024px) {
+            .card {
+                width: 60%;
+                margin: auto;
+            }
+        }
+    </style>
+    <h1>Google Scholar Citation Detail</h1>
+    <br>
+    <a class="btn btn-info" href="addGoogleScholarCitationDetails" role="button">Add Teacher Google Citation Detail</a>
+    <br><br><br>
+
+    {% if googleAllCitationDetails %}
+        <table class="table table-striped text-center">
+            <thead>
+            <tr>
+                <th scope="col">Academic Year</th>
+                <th scope="col">Teacher Name</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Citations 2015</th>
+                <th scope="col">h-index 2015</th>
+                <th scope="col">i-10 in 2015</th>
+                <th scope="col">Citations All</th>
+                <th scope="col">h-index All</th>
+                <th scope="col">i-10 in All</th>
+                <th scope="col">Cited Publication</th>
+                <th scope="col">Reported Publication</th>
+            </thead>
+            <tbody>
+            {% for i in googleAllCitationDetails %}
+                <tr>
+                    <td scope="row">{{ i.academic_year }}-{{ i.academic_year|add:"1" }}</td>
+                    <td>{{ i.teacher_name }}</td>
+                    <td>{{ i.designation }}</td>
+                    <td>{{ i.citations_2015 }}</td>
+                    <td>{{ i.h_index_2015 }}</td>
+                    <td>{{ i.i_10_2015 }}</td>
+                    <td>{{ i.citations_all }}</td>
+                    <td>{{ i.h_index_all }}</td>
+                    <td>{{ i.i_10_all }}</td>
+                    <td>{{ i.cited_publication }}</td>
+                    <td>{{ i.reported_publication }}</td>
+                    <td>
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#popUpModal{{ i.id }}">
+                            <img src="{% static 'image/trash-bin.png' %}" alt="trash-bin">
+                        </button>
+                    </td>
+                </tr>
+
+                <!-- Modal -->
+                <div class="modal fade" id="popUpModal{{ i.id }}" tabindex="-1" role="dialog" aria-labelledby="popUpModalTitle" aria-hidden="true">
+                    <div class=" modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="popUpModalTitle">Delete Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h6>Are you sure, you want to delete.</h6>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="googleScholarCitationDetails"><button type="button" class="btn btn-secondary" >No, thanks</button></a>
+                                <a href="googleScholarCitationDetailsDelete/{{i.id}}"><button type="button" class="btn btn-danger" >Delete</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <br>
+{% endblock %}

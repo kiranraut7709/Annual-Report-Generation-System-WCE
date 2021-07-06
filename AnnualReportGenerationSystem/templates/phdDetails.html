@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    PHD Details
+{% endblock %}
+
+{% block content %}
+    <style>
+        @media screen and (min-width: 1024px) {
+            .card {
+                width: 60%;
+                margin: auto;
+            }
+        }
+    </style>
+
+    <h1>PHD Detail</h1>
+    <br>
+    <!--Add a Paper-->
+    <br>
+    <a class="btn btn-info" href="addPHD" role="button">Add PHD Details</a>
+    {% if showAll %}
+        <a class="btn btn-info" href="showAllPhdData" role="button">Show All PHD Data</a>
+    {% else %}
+        <a class="btn btn-info" href="phdDetails" role="button">Hide PHD Data</a>
+    {% endif %}
+    <br><br><br>
+    {% for i in allPhd %}
+        <div class="card text-center">
+            <div class="card-header">
+                Title:  {{ i.title }}
+            </div>
+            <div class="card-body">
+                <p class="card-title">Guide Name: {{ i.guide_name }}</p>
+                <p class="card-title">Registration Date: {{ i.registration_date }}</p>
+
+                {% if i.status == True %}
+                    <p class="card-title">Completion Date: {{ i.completion_date }}</p>
+                {% else %}
+                    <p class="card-title">Status: Pursuing</p>
+                {% endif %}
+
+                {% if i.academic_year %}
+                    <p class="card-title">Academic Year: {{ i.academic_year }}-{{ i.academic_year|add:"1" }}</p>
+                {% endif %}
+
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#popUpModal{{ i.phd_id }}">
+                    <img src="{% static 'image/trash-bin.png' %}" alt="trash-bin">
+                </button>
+                {% if i.status == False %}
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popUpModal1{{ i.phd_id }}">
+                        Update Academic Year
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="popUpModal{{ i.phd_id }}" tabindex="-1" role="dialog" aria-labelledby="popUpModalTitle" aria-hidden="true">
+            <div class=" modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="popUpModalTitle">Delete Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Are you sure, you want to delete.</h6>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="phdDetails"><button type="button" class="btn btn-secondary" >No, thanks</button></a>
+                        <a href="phdDetailsDelete/{{i.phd_id}}"><button type="button" class="btn btn-danger" >Delete</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="popUpModal1{{ i.phd_id }}" tabindex="-1" role="dialog" aria-labelledby="popUpModalTitle" aria-hidden="true">
+            <div class=" modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="popUpModalTitle">Select Academic Year for adding that year's PHD Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal"  role="form" action="updatePhdData/{{ i.phd_id }}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div>
+                                    <label class="control-label" for="ddlYears">
+                                        Academic Year:
+                                    </label>
+                                    <select name="academic_year" id="{{ i.phd_id }}"></select>
+                                    -
+                                    <select name="toYear" id="ddlYears{{ i.phd_id }}"></select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="phdDetails"><button type="button" class="btn btn-secondary" >Cancel</button></a>
+                                <button type="submit" class="btn btn-success" >Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <script>
+            var ddlYears = document.getElementById("{{ i.phd_id }}");
+            var currentYear = (new Date()).getFullYear();
+            for (var i = 1950; i <= currentYear; i++) {
+                var option = document.createElement("OPTION");
+                option.innerHTML = i;
+                option.value = i;
+                ddlYears.appendChild(option);
+            }
+        </script>
+        <script>
+            var ddlYears2 = document.getElementById("ddlYears{{ i.phd_id }}");
+            var currentYear = (new Date()).getFullYear();
+            for (var i = 1950; i <= currentYear; i++) {
+                var option = document.createElement("OPTION");
+                option.innerHTML = i+1;
+                option.value = i+1;
+                ddlYears2.appendChild(option);
+            }
+        </script>
+    {% endfor %}
+
+    {% for message in messages %}
+        <script>alert("{{ message }}")</script>
+    {% endfor %}
+
+{% endblock %}

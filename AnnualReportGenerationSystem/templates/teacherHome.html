@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Teacher Home
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <style>
+        @media screen and (min-width: 1024px) {
+            .clg-heading {
+                margin-bottom: 3.5%;
+            }
+        }
+    </style>
+    <div>
+        <img style="float: left; margin-right: 5px" src="{% static '/image/Walchand_11.jpg' %}" alt="logo" />
+        <h1 class="clg-heading">Walchand College of Engineering, Sangli</h1><br>
+    </div>
+    <div style="position: absolute">
+        <h1>{{ depart }} Department Teacher Home Page</h1>
+    </div>
+    <br>
+    <br>
+    <br>
+    <p>
+        <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
+            Research Paper Details
+        </button>
+    </p>
+    <div class="collapse" id="collapse1">
+        <div class="card card-body">
+            <p class="card-text">Here you can add your research papers and view your previously added research papers.</p>
+            <a style="width: 70px" class="btn btn-info" href="researchPapers">Details</a>
+        </div>
+        <br>
+    </div>
+    <p>
+        <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapseExample">
+            PHD Details
+        </button>
+    </p>
+    <div class="collapse" id="collapse2">
+        <div class="card card-body">
+            <p class="card-text">Here you can add your PHD details and view your previously added PHD Details.</p>
+            <a style="width: 70px" class="btn btn-info" href="phdDetails">Details</a>
+        </div>
+        <br>
+    </div>
+    {% if perms.CSE.add_btechstudentdata  %}
+        <p>
+            <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapseExample">
+                Student Data
+            </button>
+        </p>
+        <div class="collapse" id="collapse3">
+            <div class="card card-body">
+                <p class="card-text">Here you can add First Year's Student Data and view previously added Student Data.</p>
+                <button style="width: 70px" type="button" class="btn btn-info stretched-link" data-toggle="modal" data-target="#popUpModal">
+                    Details
+                </button>
+            </div>
+            <br>
+        </div>
+    {% endif %}
+    <p>
+        <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapseExample">
+            Book Published
+        </button>
+    </p>
+    <div class="collapse" id="collapse4">
+        <div class="card card-body">
+            <p class="card-text">Here you can add your Books details which are Published and view your previously added Books details.</p>
+            <a style="width: 70px" class="btn btn-info" href="bookPublished">Details</a>
+        </div>
+        <br>
+    </div>
+    <p>
+        <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapseExample">
+            Patents
+        </button>
+    </p>
+    <div class="collapse" id="collapse5">
+        <div class="card card-body">
+            <p class="card-text">Here you can add your Patents and view your previously added Patents.</p>
+            <a style="width: 70px" class="btn btn-info" href="patents">Details</a>
+        </div>
+        <br>
+    </div>
+    <p>
+        <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapseExample">
+            Faculty Completed Course
+        </button>
+    </p>
+    <div class="collapse" id="collapse6">
+        <div class="card card-body">
+            <p class="card-text">Here you can add Courses which you are Completed and view your previously added Courses.</p>
+            <a style="width: 70px" class="btn btn-info" href="facultyCompletedCourse">Details</a>
+        </div>
+        <br>
+    </div>
+    <p>
+        <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapseExample">
+            Student's PHD Detail
+        </button>
+    </p>
+    <div class="collapse" id="collapse7">
+        <div class="card card-body">
+            <p class="card-text">Here you can add Student Details which currently pursing PHD under your guidance and view previously added Student Details.</p>
+            <a style="width: 70px" class="btn btn-info" href="guidePhdDetails">Details</a>
+        </div>
+        <br>
+    </div>
+    <p>
+        <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapseExample">
+            Google Scholar Citation Details
+        </button>
+    </p>
+    <div class="collapse" id="collapse8">
+        <div class="card card-body">
+            <p class="card-text">Here you can add your Google Scholar Citation Details.</p>
+            <a style="width: 70px" class="btn btn-info" href="googleScholarCitationDetails">Details</a>
+        </div>
+        <br>
+    </div>
+    <p>
+        <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapseExample">
+            Guest Lecture Details
+        </button>
+    </p>
+    <div class="collapse" id="collapse9">
+        <div class="card card-body">
+            <p class="card-text">Here you can add any Organized or Delivered Guest Lecture Details and view previously added details.</p>
+            <a style="width: 70px" class="btn btn-info" href="guestLecOrganizedOrDelivered">Details</a>
+        </div>
+        <br>
+    </div>
+    <p>
+        <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapseExample">
+            Event Conducted or Attended Details
+        </button>
+    </p>
+    <div class="collapse" id="collapse10">
+        <div class="card card-body">
+            <p class="card-text">Here you can add event Conducted or Attended Details and view previously added details.</p>
+            <a style="width: 70px" class="btn btn-info" href="eventConductedOrAttended">Details</a>
+        </div>
+        <br>
+    </div>
+
+    <br>
+
+    <!-- Modal -->
+    <div class="modal fade" id="popUpModal" tabindex="-1" role="dialog" aria-labelledby="popUpModalTitle" aria-hidden="true">
+        <div class=" modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="popUpModalTitle">Academic Year Selection</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal"  role="form" action="studentData" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div>
+                                <label class="control-label" for="ddlYears">
+                                    Academic Year:
+                                </label>
+                                <select name="academic_year" id="ddlYears"></select>
+                                -
+                                <select name="toYear" id="ddlYears2"></select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="teacherHome"><button type="button" class="btn btn-secondary" >Cancel</button></a>
+                            <button type="submit" class="btn btn-success" >Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for message in messages %}
+        <script>alert("{{ message }}")</script>
+    {% endfor %}
+
+    <script src="{% static '/js/year.js' %}"></script>
+    <script src="{% static '/js/year2.js' %}"></script>
+{% endblock %}
+
