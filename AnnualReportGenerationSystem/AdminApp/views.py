@@ -22,7 +22,7 @@ def adminHome(request):
 
 
 def ourTeam(request):
-    return render(request, 'ourTeam.html')
+    return render(request, 'ourTeam.html', {"isAdmin": isAdmin})
 
 
 def generateReport(request):

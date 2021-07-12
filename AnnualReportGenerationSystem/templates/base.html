@@ -127,9 +127,15 @@
                 <!-- Social buttons -->
                 <h5 class="font-weight-bold text-uppercase mb-4">Our Team</h5>
                 <!-- Facebook -->
-                <a href="ourTeam" type="button" class="btn-floating btn-fb">
-                    Our Team
-                </a>
+                {% if isAdmin %}
+                    <a href="{% url 'adminApp:ourTeam' %}" type="button" class="btn-floating btn-fb">
+                        Our Team
+                    </a>
+                {% else %}
+                    <a href="ourTeam" type="button" class="btn-floating btn-fb">
+                        Our Team
+                    </a>
+                {% endif %}
             </div>
             <!-- Grid column -->
         </div>
