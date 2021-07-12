@@ -21,6 +21,10 @@ def adminHome(request):
     return render(request, "adminHome.html", {"isAdmin": isAdmin})
 
 
+def ourTeam(request):
+    return render(request, 'ourTeam.html')
+
+
 def generateReport(request):
     if request.method == 'POST':
         fromYear = request.POST.get('fromYear')

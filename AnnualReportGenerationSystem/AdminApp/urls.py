@@ -21,6 +21,7 @@ app_name = 'adminApp'
 urlpatterns = [
     path('/', include([
         path('adminHome', views.adminHome, name='adminHome'),
+        path('ourTeam', views.ourTeam, name="ourTeam"),
         path('generateReport', views.generateReport, name="generateReport"),
         path('generateReportResult/<str:fromYear>/<str:toYear>', views.generateReportResult, name="generateReportResult"),
         path('GeneratePdf/<str:fromYear>/<str:toYear>', views.GeneratePdf, name='GeneratePdf')
