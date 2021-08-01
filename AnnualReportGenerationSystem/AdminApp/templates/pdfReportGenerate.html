@@ -17,6 +17,7 @@
         }
     </style>
 </head>
+
 <body>
 <div style="text-align: center">
     <h1>WCE Annual Report {{ fromYear }}-{{ toYear }}</h1>
@@ -539,9 +540,9 @@
             <th>Journal/Conference Details</th>
             <th>Date of Publication</th>
         </tr>
-        {% for i,j in allResearchPapersETN|zip:SerialNoRSPETN %}
+        {% for i in allResearchPapersETN %}
             <tr>
-                <td>{{ j }}</td>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ i.type_of_publication }}</td>
                 <td>{{ i.details_of_paper }}</td>
                 <td>{{ i.author_name }}</td>
@@ -563,9 +564,9 @@
             <th>Journal/Conference Details</th>
             <th>Date of Publication</th>
         </tr>
-        {% for i,j in allResearchPapersIT|zip:SerialNoRSPIT %}
+        {% for i in allResearchPapersIT%}
             <tr>
-                <td>{{ j }}</td>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ i.type_of_publication }}</td>
                 <td>{{ i.details_of_paper }}</td>
                 <td>{{ i.author_name }}</td>
@@ -587,9 +588,9 @@
             <th>Journal/Conference Details</th>
             <th>Date of Publication</th>
         </tr>
-        {% for i,j in allResearchPapersCSE|zip:SerialNoRSPCSE %}
+        {% for i in allResearchPapersCSE%}
             <tr>
-                <td>{{ j }}</td>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ i.type_of_publication }}</td>
                 <td>{{ i.details_of_paper }}</td>
                 <td>{{ i.author_name }}</td>
@@ -611,9 +612,9 @@
             <th>Journal/Conference Details</th>
             <th>Date of Publication</th>
         </tr>
-        {% for i,j in allResearchPapersME|zip:SerialNoRSPME %}
+        {% for i in allResearchPapersME %}
             <tr>
-                <td>{{ j }}</td>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ i.type_of_publication }}</td>
                 <td>{{ i.details_of_paper }}</td>
                 <td>{{ i.author_name }}</td>
@@ -635,9 +636,9 @@
             <th>Journal/Conference Details</th>
             <th>Date of Publication</th>
         </tr>
-        {% for i,j in allResearchPapersCV|zip:SerialNoRSPCV %}
+        {% for i in allResearchPapersCV %}
             <tr>
-                <td>{{ j }}</td>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ i.type_of_publication }}</td>
                 <td>{{ i.details_of_paper }}</td>
                 <td>{{ i.author_name }}</td>
@@ -659,9 +660,9 @@
             <th>Journal/Conference Details</th>
             <th>Date of Publication</th>
         </tr>
-        {% for i,j in allResearchPapersEL|zip:SerialNoRSPEL %}
+        {% for i in allResearchPapersEL %}
             <tr>
-                <td>{{ j }}</td>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ i.type_of_publication }}</td>
                 <td>{{ i.details_of_paper }}</td>
                 <td>{{ i.author_name }}</td>
@@ -2045,7 +2046,7 @@
     <h4 style="color: blue; text-align: left">Number of Students from Reservation Categories:</h4>
     <table>
         <tr style="background-color: #FFAA71;">
-            <th colspan="13">F.Y.B.Tech {{ fromYear }}-{{ toYear }}, Category- Wise Male, Female Admission DATA</th>
+            <th colspan="14">F.Y.B.Tech {{ fromYear }}-{{ toYear }}, Category- Wise Male, Female Admission DATA</th>
         </tr>
         <tr style="background-color: #FFAA71;">
             <th rowspan="2">Branch</th>

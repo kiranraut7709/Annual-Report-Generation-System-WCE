@@ -548,9 +548,9 @@
                 <th>Journal/Conference Details</th>
                 <th>Date of Publication</th>
             </tr>
-            {% for i,j in allResearchPapersETN|zip:SerialNoRSPETN %}
+            {% for i in allResearchPapersETN %}
                 <tr>
-                    <td>{{ j }}</td>
+                    <td>{{ forloop.counter }}</td>
                     <td>{{ i.type_of_publication }}</td>
                     <td>{{ i.details_of_paper }}</td>
                     <td>{{ i.author_name }}</td>
@@ -572,9 +572,9 @@
                 <th>Journal/Conference Details</th>
                 <th>Date of Publication</th>
             </tr>
-            {% for i,j in allResearchPapersIT|zip:SerialNoRSPIT %}
+            {% for i in allResearchPapersIT%}
                 <tr>
-                    <td>{{ j }}</td>
+                    <td>{{ forloop.counter }}</td>
                     <td>{{ i.type_of_publication }}</td>
                     <td>{{ i.details_of_paper }}</td>
                     <td>{{ i.author_name }}</td>
@@ -596,9 +596,9 @@
                 <th>Journal/Conference Details</th>
                 <th>Date of Publication</th>
             </tr>
-            {% for i,j in allResearchPapersCSE|zip:SerialNoRSPCSE %}
+            {% for i in allResearchPapersCSE%}
                 <tr>
-                    <td>{{ j }}</td>
+                    <td>{{ forloop.counter }}</td>
                     <td>{{ i.type_of_publication }}</td>
                     <td>{{ i.details_of_paper }}</td>
                     <td>{{ i.author_name }}</td>
@@ -620,9 +620,9 @@
                 <th>Journal/Conference Details</th>
                 <th>Date of Publication</th>
             </tr>
-            {% for i,j in allResearchPapersME|zip:SerialNoRSPME %}
+            {% for i in allResearchPapersME %}
                 <tr>
-                    <td>{{ j }}</td>
+                    <td>{{ forloop.counter }}</td>
                     <td>{{ i.type_of_publication }}</td>
                     <td>{{ i.details_of_paper }}</td>
                     <td>{{ i.author_name }}</td>
@@ -644,9 +644,9 @@
                 <th>Journal/Conference Details</th>
                 <th>Date of Publication</th>
             </tr>
-            {% for i,j in allResearchPapersCV|zip:SerialNoRSPCV %}
+            {% for i in allResearchPapersCV %}
                 <tr>
-                    <td>{{ j }}</td>
+                    <td>{{ forloop.counter }}</td>
                     <td>{{ i.type_of_publication }}</td>
                     <td>{{ i.details_of_paper }}</td>
                     <td>{{ i.author_name }}</td>
@@ -668,9 +668,9 @@
                 <th>Journal/Conference Details</th>
                 <th>Date of Publication</th>
             </tr>
-            {% for i,j in allResearchPapersEL|zip:SerialNoRSPEL %}
+            {% for i in allResearchPapersEL %}
                 <tr>
-                    <td>{{ j }}</td>
+                    <td>{{ forloop.counter }}</td>
                     <td>{{ i.type_of_publication }}</td>
                     <td>{{ i.details_of_paper }}</td>
                     <td>{{ i.author_name }}</td>
